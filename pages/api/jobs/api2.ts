@@ -4,10 +4,10 @@ import { Job } from "@/types/Job";
 const mockJobs: Job[] = [
   {
     id: "101",
-    title: "Mobile App Developer",
+    title: "Backend Developer",
     company: "AppMasters",
     location: "Austin, TX",
-    description: "AppMasters is seeking a talented Mobile App Developer",
+    description: "AppMasters is seeking a Backend Developer to build APIs",
     salary: "$90,000 - $130,000",
     postedDate: "2024-10-01",
     applicationUrl: "https://example.com/apply/101",

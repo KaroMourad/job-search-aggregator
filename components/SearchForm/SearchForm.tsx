@@ -1,15 +1,16 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { SearchFormProps } from "./SearchForm.types";
+import { useSearchParams } from "next/navigation";
 
-const SearchForm = () => {
+const SearchForm = ({ onSearch }: SearchFormProps) => {
   const router = useRouter();
-  const { title: queryTitle, location: queryLocation } = router.query as {
-    title: string;
-    location: string;
-  };
+  const searchParams = useSearchParams();
+  const queryTitle = searchParams.get("title") || "";
+  const queryLocation = searchParams.get("location") || "";
 
   const [title, setTitle] = useState(queryTitle || "");
   const [location, setLocation] = useState(queryLocation || "");
@@ -17,14 +18,26 @@ const SearchForm = () => {
   useEffect(() => {
     setTitle(queryTitle || "");
     setLocation(queryLocation || "");
-  }, [queryTitle, queryLocation]);
+    if (typeof onSearch === "function") {
+      onSearch({
+        title: queryTitle,
+        location: queryLocation,
+      });
+      return;
+    }
+  }, [queryTitle, queryLocation, onSearch]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const params = new URLSearchParams({
+    const data = {
       title: title.trim(),
       location: location.trim(),
-    });
+    };
+    if (typeof onSearch === "function") {
+      onSearch(data);
+      return;
+    }
+    const params = new URLSearchParams(data);
     router.push(`/search?${params.toString()}`);
   };
 

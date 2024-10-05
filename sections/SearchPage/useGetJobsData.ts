@@ -1,13 +1,18 @@
-"use client";
-
 import { handleError } from "@/lib/utils";
 import { Job } from "@/types/Job";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-function useGetJobsData(title: string, location: string) {
+function useGetJobsData(queryTitle: string, queryLocation: string) {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [title, setTitle] = useState(queryTitle || "");
+  const [location, setLocation] = useState(queryLocation || "");
+
+  const onSearch = useCallback((data: { title: string; location: string }) => {
+    setTitle(data.title);
+    setLocation(data.location);
+  }, []);
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -52,7 +57,7 @@ function useGetJobsData(title: string, location: string) {
     }
   }, [title, location]);
 
-  return { jobs, loading, error };
+  return { jobs, loading, error, title, location, onSearch };
 }
 
 export default useGetJobsData;
