@@ -8,7 +8,7 @@ const mockJobs: Job[] = [
     company: "InsightAI",
     location: "Boston, MA",
     description:
-      "InsightAI is seeking a Data Scientist to analyze large datasets...",
+      "InsightAI is seeking a Data Scientist to analyze large datasets",
     salary: "$110,000 - $140,000",
     postedDate: "2024-09-25",
     applicationUrl: "https://example.com/apply/201",
@@ -19,7 +19,7 @@ const mockJobs: Job[] = [
     company: "CryptoTech",
     location: "Remote",
     description:
-      "CryptoTech is looking for a Blockchain Developer to build decentralized apps...",
+      "CryptoTech is looking for a Blockchain Developer to build decentralized apps",
     salary: "$120,000 - $160,000",
     postedDate: "2024-09-22",
     applicationUrl: "https://example.com/apply/202",
@@ -30,7 +30,7 @@ const mockJobs: Job[] = [
     company: "HelpDeskPlus",
     location: "Chicago, IL",
     description:
-      "We are looking for an IT Support Specialist to troubleshoot hardware and software issues...",
+      "We are looking for an IT Support Specialist to troubleshoot hardware and software issues",
     salary: "$55,000 - $75,000",
     postedDate: "2024-09-20",
     applicationUrl: "https://example.com/apply/203",
@@ -41,7 +41,7 @@ const mockJobs: Job[] = [
     company: "DeepThink",
     location: "San Francisco, CA",
     description:
-      "DeepThink is hiring an AI Researcher to explore advancements in machine learning...",
+      "DeepThink is hiring an AI Researcher to explore advancements in machine learning",
     salary: "$140,000 - $180,000",
     postedDate: "2024-09-21",
     applicationUrl: "https://example.com/apply/204",
@@ -52,7 +52,7 @@ const mockJobs: Job[] = [
     company: "WebWorks",
     location: "Toronto, Canada",
     description:
-      "WebWorks is seeking a Full Stack Engineer to enhance our web platforms...",
+      "WebWorks is seeking a Full Stack Engineer to enhance our web platforms",
     salary: "$90,000 - $120,000",
     postedDate: "2024-09-18",
     applicationUrl: "https://example.com/apply/205",
@@ -63,7 +63,7 @@ const mockJobs: Job[] = [
     company: "PeopleFirst",
     location: "New York, NY",
     description:
-      "PeopleFirst is looking for an experienced HR Manager to oversee employee relations...",
+      "PeopleFirst is looking for an experienced HR Manager to oversee employee relations",
     salary: "$80,000 - $100,000",
     postedDate: "2024-09-24",
     applicationUrl: "https://example.com/apply/206",
@@ -74,7 +74,7 @@ const mockJobs: Job[] = [
     company: "BuildWise",
     location: "Berlin, Germany",
     description:
-      "Join BuildWise as a Software Architect to design scalable enterprise solutions...",
+      "Join BuildWise as a Software Architect to design scalable enterprise solutions",
     salary: "€100,000 - €130,000",
     postedDate: "2024-09-23",
     applicationUrl: "https://example.com/apply/207",
@@ -85,7 +85,7 @@ const mockJobs: Job[] = [
     company: "CreativeLabs",
     location: "Los Angeles, CA",
     description:
-      "We are seeking a creative Graphic Designer to produce visual content for our marketing team...",
+      "We are seeking a creative Graphic Designer to produce visual content for our marketing team",
     salary: "$60,000 - $85,000",
     postedDate: "2024-09-19",
     applicationUrl: "https://example.com/apply/208",
@@ -96,7 +96,7 @@ const mockJobs: Job[] = [
     company: "NetWorks",
     location: "Dallas, TX",
     description:
-      "NetWorks is hiring a Network Engineer to manage our internal networks...",
+      "NetWorks is hiring a Network Engineer to manage our internal networks",
     salary: "$95,000 - $120,000",
     postedDate: "2024-09-22",
     applicationUrl: "https://example.com/apply/209",
@@ -107,7 +107,7 @@ const mockJobs: Job[] = [
     company: "WebRank",
     location: "Remote",
     description:
-      "WebRank is looking for an SEO Specialist to optimize content and improve rankings...",
+      "WebRank is looking for an SEO Specialist to optimize content and improve rankings",
     salary: "$65,000 - $90,000",
     postedDate: "2024-09-20",
     applicationUrl: "https://example.com/apply/210",
@@ -118,7 +118,7 @@ const mockJobs: Job[] = [
     company: "CloudOps",
     location: "Austin, TX",
     description:
-      "CloudOps is seeking a DevOps Engineer to automate deployment pipelines...",
+      "CloudOps is seeking a DevOps Engineer to automate deployment pipelines",
     salary: "$100,000 - $130,000",
     postedDate: "2024-09-21",
     applicationUrl: "https://example.com/apply/211",
@@ -129,7 +129,7 @@ const mockJobs: Job[] = [
     company: "AppWorks",
     location: "Remote",
     description:
-      "AppWorks is looking for a Mobile Developer to build cross-platform apps...",
+      "AppWorks is looking for a Mobile Developer to build cross-platform apps",
     salary: "$80,000 - $110,000",
     postedDate: "2024-09-17",
     applicationUrl: "https://example.com/apply/212",
@@ -140,7 +140,7 @@ const mockJobs: Job[] = [
     company: "TechPro",
     location: "San Francisco, CA",
     description:
-      "TechPro is looking for an IT Project Manager to lead software development projects...",
+      "TechPro is looking for an IT Project Manager to lead software development projects",
     salary: "$90,000 - $120,000",
     postedDate: "2024-09-16",
     applicationUrl: "https://example.com/apply/213",
@@ -151,7 +151,7 @@ const mockJobs: Job[] = [
     company: "TestPros",
     location: "Remote",
     description:
-      "TestPros is seeking a Quality Assurance Analyst to test software applications...",
+      "TestPros is seeking a Quality Assurance Analyst to test software applications",
     salary: "$70,000 - $90,000",
     postedDate: "2024-09-15",
     applicationUrl: "https://example.com/apply/214",
@@ -162,7 +162,7 @@ const mockJobs: Job[] = [
     company: "DesignWorks",
     location: "Los Angeles, CA",
     description:
-      "DesignWorks is looking for a UX Designer to create intuitive user experiences...",
+      "DesignWorks is looking for a UX Designer to create intuitive user experiences",
     salary: "$85,000 - $110,000",
     postedDate: "2024-09-14",
     applicationUrl: "https://example.com/apply/215",
@@ -173,7 +173,7 @@ const mockJobs: Job[] = [
     company: "DataInsights",
     location: "New York, NY",
     description:
-      "DataInsights is looking for a Business Analyst to analyze data and generate insights...",
+      "DataInsights is looking for a Business Analyst to analyze data and generate insights",
     salary: "$75,000 - $95,000",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/216",
@@ -184,7 +184,7 @@ const mockJobs: Job[] = [
     company: "SysAdmins",
     location: "Chicago, IL",
     description:
-      "SysAdmins is hiring a Systems Administrator to manage IT infrastructure...",
+      "SysAdmins is hiring a Systems Administrator to manage IT infrastructure",
     salary: "$70,000 - $90,000",
     postedDate: "2024-09-12",
     applicationUrl: "https://example.com/apply/217",
@@ -195,7 +195,7 @@ const mockJobs: Job[] = [
     company: "WriteTech",
     location: "Remote",
     description:
-      "WriteTech is seeking a Technical Writer to create documentation and guides...",
+      "WriteTech is seeking a Technical Writer to create documentation and guides",
     salary: "$60,000 - $80,000",
     postedDate: "2024-09-11",
     applicationUrl: "https://example.com/apply/218",
@@ -206,7 +206,7 @@ const mockJobs: Job[] = [
     company: "ProductX",
     location: "San Francisco, CA",
     description:
-      "ProductX is looking for a Product Manager to oversee product development...",
+      "ProductX is looking for a Product Manager to oversee product development",
     salary: "$100,000 - $130,000",
     postedDate: "2024-09-10",
     applicationUrl: "https://example.com/apply/219",
@@ -217,7 +217,7 @@ const mockJobs: Job[] = [
     company: "DataWorks",
     location: "Los Angeles, CA",
     description:
-      "DataWorks is seeking a Data Analyst to analyze data and generate reports...",
+      "DataWorks is seeking a Data Analyst to analyze data and generate reports",
     salary: "$65,000 - $85,000",
     postedDate: "2024-09-09",
     applicationUrl: "https://example.com/apply/220",
@@ -228,7 +228,7 @@ const mockJobs: Job[] = [
     company: "CodeWorks",
     location: "Remote",
     description:
-      "CodeWorks is looking for a Full Stack Developer to build web applications...",
+      "CodeWorks is looking for a Full Stack Developer to build web applications",
     salary: "$90,000 - $120,000",
     postedDate: "2024-09-08",
     applicationUrl: "https://example.com/apply/221",
@@ -239,7 +239,7 @@ const mockJobs: Job[] = [
     company: "CloudWorks",
     location: "Austin, TX",
     description:
-      "CloudWorks is seeking a Cloud Architect to design cloud infrastructure...",
+      "CloudWorks is seeking a Cloud Architect to design cloud infrastructure",
     salary: "$110,000 - $140,000",
     postedDate: "2024-09-07",
     applicationUrl: "https://example.com/apply/222",
@@ -250,7 +250,7 @@ const mockJobs: Job[] = [
     company: "ResearchLabs",
     location: "Boston, MA",
     description:
-      "ResearchLabs is looking for a UX Researcher to conduct user research...",
+      "ResearchLabs is looking for a UX Researcher to conduct user research",
     salary: "$80,000 - $100,000",
     postedDate: "2024-09-06",
     applicationUrl: "https://example.com/apply/223",
@@ -261,19 +261,54 @@ const mockJobs: Job[] = [
     company: "SecureNet",
     location: "Remote",
     description:
-      "SecureNet is looking for a Full Stack Engineer to develop web applications...",
+      "SecureNet is looking for a Full Stack Engineer to develop web applications",
     salary: "$100,000 - $130,000",
     postedDate: "2024-09-05",
     applicationUrl: "https://example.com/apply/224",
   },
 ];
 
-export default function handler(
+// API route handler
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Job[]>
 ) {
-  // Simulate a delayed response (exceeds timeout)
-  setTimeout(() => {
-    res.status(200).json(mockJobs);
-  }, 2000);
+  const { method } = req;
+
+  switch (method) {
+    case "GET":
+      await getItems(req, res);
+      break;
+    default:
+      res.setHeader("Allow", ["GET"]);
+      res.status(405).end(`Method ${method} Not Allowed`);
+  }
 }
+
+export const getItems = async (
+  req: NextApiRequest,
+  res: NextApiResponse<Job[]>
+) => {
+  const { title, location } = req.query as {
+    title: string;
+    location: string;
+  };
+
+  // Filter items based on query parameters
+  let filteredItems = mockJobs;
+
+  if (title) {
+    filteredItems = filteredItems.filter((item) =>
+      item.title.toLowerCase().includes(title.toLowerCase())
+    );
+  }
+
+  if (location) {
+    filteredItems = filteredItems.filter((item) =>
+      item.location.toLowerCase().includes(location.toLowerCase())
+    );
+  }
+  setTimeout(() => {
+    res.status(200).json(filteredItems);
+  }, 1000);
+};

@@ -7,7 +7,7 @@ const mockJobs: Job[] = [
     title: "Frontend Developer",
     company: "TechCorp",
     location: "Remote",
-    description: "We are looking for a skilled Frontend Developer...",
+    description: "We are looking for a skilled Frontend Developer to join our team in a remote capacity and help us build user-friendly web applications",
     salary: "$80,000 - $120,000",
     postedDate: "2024-09-15",
     applicationUrl: "https://example.com/apply/1",
@@ -17,7 +17,7 @@ const mockJobs: Job[] = [
     title: "Full Stack Developer",
     company: "TechSoft",
     location: "Yerevan, Armenia",
-    description: "TechSoft is looking for a Full Stack Developer...",
+    description: "TechSoft is looking for a Full Stack Developer",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/2",
   },
@@ -26,7 +26,7 @@ const mockJobs: Job[] = [
     title: "Product Manager",
     company: "TechSoft",
     location: "San Francisco, CA",
-    description: "TechSoft is looking for a Product Manager...",
+    description: "TechSoft is looking for a Product Manager",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/3",
   },
@@ -35,7 +35,7 @@ const mockJobs: Job[] = [
     title: "Backend Engineer",
     company: "DataSystems",
     location: "New York, NY",
-    description: "Seeking an experienced Backend Engineer to join our team...",
+    description: "Seeking an experienced Backend Engineer to join our team",
     postedDate: "2024-09-14",
     applicationUrl: "https://example.com/apply/4",
   },
@@ -44,7 +44,7 @@ const mockJobs: Job[] = [
     title: "Software Engineer",
     company: "TechSoft",
     location: "Remote",
-    description: "TechSoft is looking for a Software Engineer...",
+    description: "TechSoft is looking for a Software Engineer",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/5",
   },
@@ -53,7 +53,7 @@ const mockJobs: Job[] = [
     title: "Data Analyst",
     company: "DataSystems",
     location: "San Francisco, CA",
-    description: "DataSystems is looking for a Data Analyst...",
+    description: "DataSystems is looking for a Data Analyst",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/6",
   },
@@ -62,7 +62,7 @@ const mockJobs: Job[] = [
     title: "UX Designer",
     company: "TechCorp",
     location: "Remote",
-    description: "TechCorp is looking for a UX Designer...",
+    description: "TechCorp is looking for a UX Designer",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/7",
   },
@@ -71,7 +71,7 @@ const mockJobs: Job[] = [
     title: "QA Engineer",
     company: "TechSoft",
     location: "Yerevan, Armenia",
-    description: "TechSoft is looking for a QA Engineer...",
+    description: "TechSoft is looking for a QA Engineer",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/8",
   },
@@ -80,7 +80,7 @@ const mockJobs: Job[] = [
     title: "DevOps Engineer",
     company: "DataSystems",
     location: "New York, NY",
-    description: "DataSystems is looking for a DevOps Engineer...",
+    description: "DataSystems is looking for a DevOps Engineer",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/9",
   },
@@ -89,7 +89,7 @@ const mockJobs: Job[] = [
     title: "Technical Writer",
     company: "TechCorp",
     location: "Remote",
-    description: "TechCorp is looking for a Technical Writer...",
+    description: "TechCorp is looking for a Technical Writer",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/10",
   },
@@ -98,7 +98,7 @@ const mockJobs: Job[] = [
     title: "Security Analyst",
     company: "TechSoft",
     location: "Yerevan, Armenia",
-    description: "TechSoft is looking for a Security Analyst...",
+    description: "TechSoft is looking for a Security Analyst",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/11",
   },
@@ -107,7 +107,7 @@ const mockJobs: Job[] = [
     title: "IT Support Specialist",
     company: "DataSystems",
     location: "New York, NY",
-    description: "DataSystems is looking for an IT Support Specialist...",
+    description: "DataSystems is looking for an IT Support Specialist",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/12",
   },
@@ -116,7 +116,7 @@ const mockJobs: Job[] = [
     title: "Network Engineer",
     company: "TechSoft",
     location: "Yerevan, Armenia",
-    description: "TechSoft is looking for a Network Engineer...",
+    description: "TechSoft is looking for a Network Engineer",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/13",
   },
@@ -125,7 +125,7 @@ const mockJobs: Job[] = [
     title: "Database Administrator",
     company: "DataSystems",
     location: "New York, NY",
-    description: "DataSystems is looking for a Database Administrator...",
+    description: "DataSystems is looking for a Database Administrator",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/14",
   },
@@ -134,7 +134,7 @@ const mockJobs: Job[] = [
     title: "Technical Support Engineer",
     company: "TechCorp",
     location: "Remote",
-    description: "TechCorp is looking for a Technical Support Engineer...",
+    description: "TechCorp is looking for a Technical Support Engineer",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/15",
   },
@@ -143,7 +143,7 @@ const mockJobs: Job[] = [
     title: "Systems Analyst",
     company: "TechSoft",
     location: "Yerevan, Armenia",
-    description: "TechSoft is looking for a Systems Analyst...",
+    description: "TechSoft is looking for a Systems Analyst",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/16",
   },
@@ -152,7 +152,8 @@ const mockJobs: Job[] = [
     title: "Business Intelligence Analyst",
     company: "DataSystems",
     location: "New York, NY",
-    description: "DataSystems is looking for a Business Intelligence Analyst...",
+    description:
+      "DataSystems is looking for a Business Intelligence Analyst",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/17",
   },
@@ -161,7 +162,7 @@ const mockJobs: Job[] = [
     title: "IT Manager",
     company: "TechSoft",
     location: "Yerevan, Armenia",
-    description: "TechSoft is looking for an IT Manager...",
+    description: "TechSoft is looking for an IT Manager",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/18",
   },
@@ -170,7 +171,7 @@ const mockJobs: Job[] = [
     title: "Software Architect",
     company: "DataSystems",
     location: "New York, NY",
-    description: "DataSystems is looking for a Software Architect...",
+    description: "DataSystems is looking for a Software Architect",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/19",
   },
@@ -179,18 +180,53 @@ const mockJobs: Job[] = [
     title: "Product Owner",
     company: "TechCorp",
     location: "Remote",
-    description: "TechCorp is looking for a Product Owner...",
+    description: "TechCorp is looking for a Product Owner",
     postedDate: "2024-09-13",
     applicationUrl: "https://example.com/apply/20",
   },
 ];
 
-export default function handler(
+// API route handler
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Job[]>
 ) {
-  // Simulate a quick response (within timeout)
-  setTimeout(() => {
-    res.status(200).json(mockJobs);
-  }, 1000);
+  const { method } = req;
+
+  switch (method) {
+    case "GET":
+      await getItems(req, res);
+      break;
+    default:
+      res.setHeader("Allow", ["GET"]);
+      res.status(405).end(`Method ${method} Not Allowed`);
+  }
 }
+
+export const getItems = async (
+  req: NextApiRequest,
+  res: NextApiResponse<Job[]>
+) => {
+  const { title, location } = req.query as {
+    title: string;
+    location: string;
+  };
+
+  // Filter items based on query parameters
+  let filteredItems = mockJobs;
+
+  if (title) {
+    filteredItems = filteredItems.filter((item) =>
+      item.title.toLowerCase().includes(title.toLowerCase())
+    );
+  }
+
+  if (location) {
+    filteredItems = filteredItems.filter((item) =>
+      item.location.toLowerCase().includes(location.toLowerCase())
+    );
+  }
+  setTimeout(() => {
+    res.status(200).json(filteredItems);
+  }, 2000);
+};
