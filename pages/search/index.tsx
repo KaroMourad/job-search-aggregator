@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import RootLayout from "@/layouts/layout";
 import { Job } from "@/types/Job";
 import { SearchForm } from "@/components/SearchForm";
+import { Loading } from "@/components/Loading";
+import { JobCard } from "@/components/JobCard";
+import { JobsGridContainer } from "@/containers/JobsGridContainer";
+import { SearchPageContainer } from "@/containers/SearchPageContainer";
 
 const Search = () => {
   const router = useRouter();
@@ -15,6 +20,7 @@ const Search = () => {
     const fetchJobs = async () => {
       try {
         setLoading(true);
+        setJobs([]);
         const requests = [
           fetch(`/api/jobs/api1`).then((res) => res.json()),
           fetch(`/api/jobs/api2`).then((res) => res.json()),
@@ -29,7 +35,7 @@ const Search = () => {
             (job) =>
               job.title
                 .toLowerCase()
-                .includes((title as string)?.toLowerCase()) &&
+                .includes((title as string)?.toLowerCase()) ||
               job.location
                 .toLowerCase()
                 .includes((location as string)?.toLowerCase())
@@ -44,43 +50,50 @@ const Search = () => {
       }
     };
 
-    if (title && location) {
+    if (title || location) {
       fetchJobs();
     }
   }, [title, location]);
 
   return (
     <RootLayout>
-      <section className="flex flex-col flex-1 items-center p-8 w-full min-h-full">
+      <SearchPageContainer>
         <h2 className="text-2xl font-semibold mb-4">
           Job Results for "{title}" in "{location}"
         </h2>
         <SearchForm />
-        {!loading && <p>Loading jobs...</p>}
-        {error && <p className="text-red-500">{error}</p>}
-        {!loading && !error && jobs.length === 0 && (
-          <p>No jobs found. Try searching for a different role or location.</p>
+        {loading && <Loading text="Loading Jobs..." />}
+        {error && (
+          <div className="flex flex-col items-center justify-center flex-1 ">
+            <Image
+              src="/images/illustrations/error.svg"
+              alt="Error fetching jobs"
+              width={400}
+              height={400}
+            />
+            <p>Failed to fetch jobs. Please try again.</p>
+            <span>{error}</span>
+          </div>
         )}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {!loading && !error && jobs.length === 0 && (
+          <div className="flex flex-col items-center justify-center flex-1 ">
+            <Image
+              src="/images/illustrations/empty.svg"
+              alt="No jobs found"
+              width={400}
+              height={400}
+            />
+            <p>
+              No jobs found. Try searching for a different role or location.
+            </p>
+          </div>
+        )}
+        <JobsGridContainer>
           {jobs.map((job) => (
-            <div key={job.id} className="bg-white p-4 rounded shadow-md">
-              <h3 className="text-xl font-semibold">{job.title}</h3>
-              <p className="text-gray-700">{job.company}</p>
-              <p className="text-gray-500">{job.location}</p>
-              <p className="text-sm mt-2">{job.description}</p>
-              {job.salary && <p className="mt-2 font-semibold">{job.salary}</p>}
-              <a
-                href={job.applicationUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block mt-4 bg-blue-600 text-white text-center py-2 rounded hover:bg-blue-700"
-              >
-                Apply Now
-              </a>
-            </div>
+            <JobCard key={job.id} job={job} className="max-w-[300px]" />
           ))}
-        </div>
-      </section>
+        </JobsGridContainer>
+      </SearchPageContainer>
     </RootLayout>
   );
 };
