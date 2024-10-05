@@ -1,9 +1,7 @@
-// pages/api/search.ts
-import { handleError } from "@/lib/utils";
+import { getRootUrl, handleError } from "@/lib/utils";
 import { Job } from "@/types/Job";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const ROOT_URL = process.env.URL || "http://localhost:3000";
 const API_URLS = ["/api/jobs/api1", "/api/jobs/api2", "/api/jobs/api3"];
 
 async function fetchWithTimeout<T>(url: string, timeout: number): Promise<T> {
@@ -16,7 +14,7 @@ async function fetchWithTimeout<T>(url: string, timeout: number): Promise<T> {
   }, timeout);
 
   try {
-    const response = await fetch(ROOT_URL + url, { signal });
+    const response = await fetch(url, { signal });
     if (!response.ok) {
       throw new Error(`Failed to fetch from ${url}`);
     }
@@ -38,11 +36,12 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { title, location } = req.query;
+  const ROOT_URL = getRootUrl(req);
   const timeout = 2000;
 
   try {
     const results = await Promise.allSettled(
-      API_URLS.map((url) => fetchWithTimeout<Job[]>(url, timeout))
+      API_URLS.map((url) => fetchWithTimeout<Job[]>(ROOT_URL + url, timeout))
     );
 
     let successfulResults = results
