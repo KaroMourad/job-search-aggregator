@@ -12,7 +12,7 @@ const Search = () => {
   return (
     <RootLayout>
       <SearchPageContainer>
-        <h2 className="text-2xl font-semibold mb-4">
+        <h2 className="text-2xl font-semibold mt-4 mb-4">
           Job Results for "{title || "All jobs"}" in "
           {location || "All Locations"}"
         </h2>
