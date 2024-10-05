@@ -1,7 +1,6 @@
 import RootLayout from "@/layouts/layout";
 import { SearchForm } from "@/components/SearchForm";
 import { HomePageContainer } from "@/sections/HomePage";
-import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 const Home = () => {
   return (

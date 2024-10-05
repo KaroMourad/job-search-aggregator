@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import RootLayout from "@/layouts/layout";
 import { SearchPageContainer, SearchPageContent } from "@/sections/SearchPage";
 

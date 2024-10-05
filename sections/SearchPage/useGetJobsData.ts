@@ -1,4 +1,5 @@
 import { handleError } from "@/lib/utils";
+import { searchJobsApi } from "@/services/api/jobs/jobs";
 import { Job } from "@/types/Job";
 import { useCallback, useEffect, useState } from "react";
 
@@ -16,37 +17,17 @@ function useGetJobsData(queryTitle: string, queryLocation: string) {
 
   useEffect(() => {
     const fetchJobs = async () => {
+      setLoading(true);
+      setJobs([]);
+      setError(null);
       try {
-        setLoading(true);
-        setJobs([]);
-        const params = new URLSearchParams({
-          title,
-          location,
-        });
-        const requests = [
-          fetch(`/api/jobs/api1?${params.toString()}`).then((res) =>
-            res.json()
-          ),
-          fetch(`/api/jobs/api2?${params.toString()}`).then((res) =>
-            res.json()
-          ),
-          fetch(`/api/jobs/api3?${params.toString()}`).then((res) =>
-            res.json()
-          ),
-        ];
-
-        const response = await Promise.allSettled<Job[]>(requests);
-        const successfulResponses = response
-          .filter((result) => result.status === "fulfilled")
-          .flatMap((result) => (result as PromiseFulfilledResult<Job[]>).value);
-
-        setJobs(successfulResponses);
+        const response = await searchJobsApi({title, location});
+        if (!response.ok) throw new Error("Failed to fetch jobs");
+        const data: Job[] = await response.json();
+        setJobs(data);
       } catch (error: unknown) {
         const err = handleError(error);
         setError(err.message);
-        throw new Error(
-          "Failed to fetch jobs. Please try again." + err.message
-        );
       } finally {
         setLoading(false);
       }

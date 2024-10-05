@@ -228,50 +228,14 @@ const mockJobs: Job[] = [
     salary: "€70,000 - €90,000",
     postedDate: "2024-09-27",
     applicationUrl: "https://example.com/apply/121",
-  }
+  },
 ];
 
-// API route handler
-export default async function handler(
+export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Job[]>
 ) {
-  const { method } = req;
-
-  switch (method) {
-    case "GET":
-      await getItems(req, res);
-      break;
-    default:
-      res.setHeader("Allow", ["GET"]);
-      res.status(405).end(`Method ${method} Not Allowed`);
-  }
-}
-
-export const getItems = async (
-  req: NextApiRequest,
-  res: NextApiResponse<Job[]>
-) => {
-  const { title, location } = req.query as {
-    title: string;
-    location: string;
-  };
-
-  // Filter items based on query parameters
-  let filteredItems = mockJobs;
-
-  if (title) {
-    filteredItems = filteredItems.filter((item) =>
-      item.title.toLowerCase().includes(title.toLowerCase())
-    );
-  }
-
-  if (location) {
-    filteredItems = filteredItems.filter((item) =>
-      item.location.toLowerCase().includes(location.toLowerCase())
-    );
-  }
   setTimeout(() => {
-    res.status(200).json(filteredItems);
+    res.status(200).json(mockJobs);
   }, 3000);
-};
+}
