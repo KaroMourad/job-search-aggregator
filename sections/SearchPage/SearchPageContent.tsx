@@ -42,7 +42,7 @@ function SearhPageContent() {
       )}
       <JobsGridContainer>
         {jobs.map((job) => (
-          <JobCard key={job.id} job={job} className="w-80 h-64" />
+          <JobCard key={job.id} job={job} className="min-w-64 max-w-80 w-full min-h-full h-72 md:h-64" />
         ))}
       </JobsGridContainer>
     </ErrorBoundary>

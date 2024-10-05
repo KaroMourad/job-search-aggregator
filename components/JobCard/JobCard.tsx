@@ -15,7 +15,7 @@ function JobCard(props: JobCardProps) {
   const { job, className = "" } = props;
   return (
     <ErrorBoundary>
-      <Card className={`flex flex-col p-6 ${className}`}>
+      <Card className={`flex flex-col p-6 overflow-hidden ${className}`}>
         <CardHeader className="p-0 pb-6">
           <CardTitle>{job.title}</CardTitle>
           <CardDescription>
