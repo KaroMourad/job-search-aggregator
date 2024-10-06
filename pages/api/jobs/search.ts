@@ -1,5 +1,6 @@
 import { getRootUrl, handleError } from "@/lib/utils";
 import { Job } from "@/types/Job";
+import { ApiResponse } from "@/types/api";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const API_URLS = ["/api/jobs/api1", "/api/jobs/api2", "/api/jobs/api3"];
@@ -41,12 +42,12 @@ export default async function handler(
 
   try {
     const results = await Promise.allSettled(
-      API_URLS.map((url) => fetchWithTimeout<Job[]>(ROOT_URL + url, timeout))
+      API_URLS.map((url) => fetchWithTimeout<ApiResponse<Job[]>>(ROOT_URL + url, timeout))
     );
 
     let successfulResults = results
       .filter((result) => result.status === "fulfilled")
-      .map((result) => (result as PromiseFulfilledResult<Job[]>).value)
+      .map((result) => (result as PromiseFulfilledResult<{data: Job[]}>).value.data)
       .flat();
 
     successfulResults = filterJobs<Job>(successfulResults, {

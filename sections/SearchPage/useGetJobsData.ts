@@ -21,7 +21,11 @@ function useGetJobsData(queryTitle: string, queryLocation: string) {
       setJobs([]);
       setError(null);
       try {
-        const response = await searchJobsApi({title, location});
+        const strUrlParams = new URLSearchParams({
+          title,
+          location,
+        }).toString();
+        const response = await searchJobsApi(strUrlParams);
         if (!response.ok) throw new Error("Failed to fetch jobs");
         const data: Job[] = await response.json();
         setJobs(data);

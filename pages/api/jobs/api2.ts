@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Job } from "@/types/Job";
+import { ApiResponse } from "@/types/api";
 
-const mockJobs: Job[] = [
+export const mockJobs: Job[] = [
   {
     id: "101",
     title: "Backend Developer",
@@ -231,11 +232,19 @@ const mockJobs: Job[] = [
   },
 ];
 
+export const API2_DELAY = 3000;
+
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Job[]>
+  res: NextApiResponse<ApiResponse<Job[]>>
 ) {
+  const { error } = req.query;
+
+  if (error === "true") {
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+
   setTimeout(() => {
-    res.status(200).json(mockJobs);
-  }, 3000);
+    res.status(200).json({ data: mockJobs });
+  }, API2_DELAY);
 }

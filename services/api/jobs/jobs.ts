@@ -1,18 +1,14 @@
-import { Job } from "@/types/Job";
-import { SearchJobsParams } from "./jobs.types";
-
 const API = "api";
 const JOBS = {
   BASE: "jobs",
   SEARCH: "search",
 };
 
-export function searchJobsApi(
-  params: SearchJobsParams
-): Promise<Response> {
-  const strUrlParams = new URLSearchParams({
-    title: params.title,
-    location: params.location,
-  }).toString();
+/**
+ * Search jobs from the API
+ * @param {string} strUrlParams - URL params
+ * @returns Promise<Response>
+ */
+export function searchJobsApi(strUrlParams: string): Promise<Response> {
   return fetch(`/${API}/${JOBS.BASE}/${JOBS.SEARCH}?${strUrlParams}`);
 }
