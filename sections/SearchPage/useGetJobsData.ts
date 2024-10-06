@@ -1,4 +1,4 @@
-import { handleError } from "@/lib/utils";
+import { handleError } from "@/lib/utils/handleError";
 import { searchJobsApi } from "@/services/api/jobs/jobs";
 import { Job } from "@/types/Job";
 import { useCallback, useEffect, useState } from "react";
