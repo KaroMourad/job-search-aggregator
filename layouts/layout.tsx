@@ -1,11 +1,12 @@
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { ModeToggle } from "@/components/ModeToggle";
 import { Button } from "@/components/ui/button";
-import { ComponentBooleanIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
+import { ComponentBooleanIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
+    <ErrorBoundary>
       <Button
         size={"icon"}
         asChild
@@ -29,7 +30,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <main className="flex flex-col relative min-h-dvh h-full">
         {children}
       </main>
-    </div>
+    </ErrorBoundary>
   );
 };
 
