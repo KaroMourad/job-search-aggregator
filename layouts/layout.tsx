@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="min-h-screen">
+    <div>
       <Button
         size={"icon"}
         asChild
@@ -26,7 +26,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="fixed z-[3] right-4 top-4">
         <ModeToggle />
       </div>
-      <main className="flex flex-col relative min-h-screen max-h-screen">
+      <main className="flex flex-col relative min-h-dvh h-full">
         {children}
       </main>
     </div>

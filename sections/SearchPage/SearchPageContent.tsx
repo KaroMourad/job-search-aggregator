@@ -50,15 +50,17 @@ function SearhPageContent() {
           <p>No jobs found. Try searching for a different role or location.</p>
         </div>
       )}
-      <JobsGridContainer>
-        {jobs.map((job) => (
-          <JobCard
-            key={job.id}
-            job={job}
-            className="min-w-64 max-w-80 w-full min-h-full h-72 md:h-64"
-          />
-        ))}
-      </JobsGridContainer>
+      {jobs.length > 0 && (
+        <JobsGridContainer>
+          {jobs.map((job) => (
+            <JobCard
+              key={job.id}
+              job={job}
+              className="min-w-full sm:min-w-64 max-w-80 w-full min-h-full h-64 md:h-60"
+            />
+          ))}
+        </JobsGridContainer>
+      )}
     </ErrorBoundary>
   );
 }

@@ -15,14 +15,14 @@ function JobCard(props: JobCardProps) {
   const { job, className = "" } = props;
   return (
     <ErrorBoundary>
-      <Card className={`flex flex-col p-6 overflow-hidden ${className}`}>
-        <CardHeader className="p-0 pb-6">
+      <Card className={`flex flex-col py-5 px-4 overflow-hidden rounded-lg ${className}`}>
+        <CardHeader className="p-0 pb-4">
           <CardTitle>{job.title}</CardTitle>
           <CardDescription>
             {job.description.substring(0, 70)}...
           </CardDescription>
         </CardHeader>
-        <CardContent className="p-0 pb-4">
+        <CardContent className="p-0">
           <p className="text-foreground font-semibold">{job.company}</p>
           <p className="text-muted-foreground text-sm">{job.location}</p>
           {job.salary && (
