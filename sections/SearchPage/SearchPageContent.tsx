@@ -21,29 +21,31 @@ function SearhPageContent() {
   return (
     <ErrorBoundary>
       <h2 className="text-2xl font-semibold mt-10 mb-4 text-center">
-        Job Results for "{title || "All jobs"}" in "{location || "All Locations"}" 
-        ({jobs.length})
+        Job Results for "{title || "All jobs"}" in "
+        {location || "All Locations"}" ({jobs.length})
       </h2>
-      <SearchForm onSearch={onSearch}  />
+      <SearchForm onSearch={onSearch} />
       {loading && <Loading text="Loading Jobs..." />}
       {error && (
-        <div className="flex flex-col items-center justify-center flex-1 ">
+        <div className="flex flex-col items-center flex-1 ">
           <Image
             src="/images/illustrations/error.svg"
             alt="Error fetching jobs"
-            width={400}
-            height={400}
+            width={288}
+            height={288}
+            className="w-72 h-72 md:w-96 md:h-96"
           />
           <p className="mt-4">{error}</p>
         </div>
       )}
       {!loading && !error && jobs.length === 0 && (
-        <div className="flex flex-col items-center justify-center flex-1 ">
+        <div className="flex flex-col items-center flex-1 ">
           <Image
             src="/images/illustrations/empty.svg"
             alt="No jobs found"
-            width={400}
-            height={400}
+            width={288}
+            height={288}
+            className="w-72 h-72 md:w-96 md:h-96"
           />
           <p>No jobs found. Try searching for a different role or location.</p>
         </div>
