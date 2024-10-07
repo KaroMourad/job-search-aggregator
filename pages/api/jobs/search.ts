@@ -1,13 +1,14 @@
-import { API_URLS } from "@/lib/constants";
+import { API_URLS, CACHE_SIZE } from "@/lib/constants";
 import { fetchWithTimeout } from "@/lib/utils/fetchWithTimeout";
 import { filterJobs } from "@/lib/utils/filterJobs";
 import { getRootUrl } from "@/lib/utils/getRootUrl";
-import CacheMap from "@/services/CacheMap";
+import LRUCache from "@/services/LRUCache";
+import CacheMap from "@/services/LRUCache";
 import { Job } from "@/types/Job";
 import { ApiResponse } from "@/types/api";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const cache = new CacheMap<Job[]>();
+const cache = new LRUCache<Job[]>(CACHE_SIZE);
 
 export default async function handler(
   req: NextApiRequest,
