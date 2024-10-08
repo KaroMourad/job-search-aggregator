@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { SearchFormProps } from "./SearchForm.types";
 import { useSearchParams } from "next/navigation";
+import { INITIAL_PAGE, INITIAL_PAGE_SIZE } from "@/lib/constants";
 
 const SearchForm = ({ onSearch }: SearchFormProps) => {
   const router = useRouter();
@@ -38,8 +39,8 @@ const SearchForm = ({ onSearch }: SearchFormProps) => {
     } else {
       params.delete('location');
     }
-    params.set("pageSize", "10");
-    params.set("page", "1");
+    params.set("pageSize", INITIAL_PAGE_SIZE);
+    params.set("page", INITIAL_PAGE);
     router.replace(`/search?${params.toString()}`);
     if(onSearch) onSearch(data);
   };

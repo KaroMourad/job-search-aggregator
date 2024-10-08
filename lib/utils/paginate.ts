@@ -1,3 +1,5 @@
+import { INITIAL_PAGE, INITIAL_PAGE_SIZE } from "../constants";
+
 export interface PaginatedResult<T> {
   data: T[];
   totalItems: number;
@@ -15,8 +17,8 @@ export interface PaginatedResult<T> {
  */
 export default function paginate<T>(
   items: T[],
-  currentPage: number = 1,
-  pageSize: number = 10
+  currentPage: number = Number(INITIAL_PAGE),
+  pageSize: number = Number(INITIAL_PAGE_SIZE)
 ): PaginatedResult<T> {
   const totalItems = items.length;
   const totalPages = Math.ceil(totalItems / pageSize);

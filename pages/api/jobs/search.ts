@@ -2,6 +2,8 @@ import {
   JOB_API_URLS,
   CACHE_SIZE,
   REQUEST_TIMEOUT_DELAY,
+  INITIAL_PAGE,
+  INITIAL_PAGE_SIZE,
 } from "@/lib/constants";
 import {
   fetchWithTimeout,
@@ -58,8 +60,8 @@ function parseJobQueryParams(query: NextApiRequest["query"]) {
 // Function to parse paginated query parameters
 function parsePaginatedQueryParams(query: NextApiRequest["query"]) {
   return {
-    page: Number(query.page) || 1,
-    pageSize: Number(query.pageSize) || 10,
+    page: Number(query.page || INITIAL_PAGE),
+    pageSize: Number(query.pageSize || INITIAL_PAGE_SIZE),
   };
 }
 

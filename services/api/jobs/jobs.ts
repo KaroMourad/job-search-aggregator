@@ -1,3 +1,4 @@
+import { INITIAL_PAGE, INITIAL_PAGE_SIZE } from "@/lib/constants";
 import { PaginatedResult } from "@/lib/utils";
 import { FetchJobsParams, Job } from "@/types/Job";
 
@@ -19,8 +20,8 @@ export function searchJobsApi(strUrlParams: string): Promise<Response> {
 export async function fetchJobs({
   title,
   location,
-  page = 1,
-  pageSize = 10,
+  page = INITIAL_PAGE,
+  pageSize = INITIAL_PAGE_SIZE,
 }: FetchJobsParams): Promise<PaginatedResult<Job>> {
   const strUrlParams = new URLSearchParams({
     title,

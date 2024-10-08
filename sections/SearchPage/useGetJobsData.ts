@@ -5,6 +5,7 @@ import { adaptError } from "@/lib/utils";
 import { fetchJobs } from "@/services/api/jobs/jobs";
 import { useSearchParams } from "next/navigation";
 import { usePagination } from "@/lib/hooks";
+import { INITIAL_PAGE, INITIAL_PAGE_SIZE } from "@/lib/constants";
 
 const QUERY_KEY = "jobs";
 
@@ -51,8 +52,8 @@ function useGetJobsData() {
   useEffect(() => {
     if (data) {
       setTotalItems(data.totalItems || 0);
-      setPage(data.currentPage || 1);
-      setPageSize(data.pageSize || 10);
+      setPage(data.currentPage || Number(INITIAL_PAGE));
+      setPageSize(data.pageSize || Number(INITIAL_PAGE_SIZE));
     }
   }, [data]);
 
