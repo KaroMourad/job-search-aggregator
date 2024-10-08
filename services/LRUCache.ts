@@ -78,7 +78,7 @@ class LRUCache<T> {
    * @param {string} key - The key to check.
    * @returns {boolean} True if the key exists, false otherwise.
    */
-  private has(key: string): boolean {
+  has(key: string): boolean {
     return this.cache.hasOwnProperty(key);
   }
 

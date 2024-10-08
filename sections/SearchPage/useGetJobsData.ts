@@ -1,48 +1,79 @@
-import { handleError } from "@/lib/utils/handleError";
-import { searchJobsApi } from "@/services/api/jobs/jobs";
-import { Job } from "@/types/Job";
+"use client";
+import { useQuery } from "@tanstack/react-query";
 import { useCallback, useEffect, useState } from "react";
+import { adaptError } from "@/lib/utils";
+import { fetchJobs } from "@/services/api/jobs/jobs";
+import { useSearchParams } from "next/navigation";
+import { usePagination } from "@/lib/hooks";
 
-function useGetJobsData(queryTitle: string, queryLocation: string) {
-  const [jobs, setJobs] = useState<Job[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [title, setTitle] = useState(queryTitle || "");
-  const [location, setLocation] = useState(queryLocation || "");
+const QUERY_KEY = "jobs";
+
+function useGetJobsData() {
+  const searchParams = useSearchParams();
+  const queryTitle = searchParams.get("title") || "";
+  const queryLocation = searchParams.get("location") || "";
+  const [title, setTitle] = useState(queryTitle);
+  const [location, setLocation] = useState(queryLocation);
+
+  const {
+    nextPage,
+    prevPage,
+    canGoNext,
+    canGoPrev,
+    page,
+    pageSize,
+    setTotalItems,
+    setPage,
+    setPageSize,
+    isRouterReady,
+    isPaginationReady,
+  } = usePagination();
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: [QUERY_KEY, title, location, page, pageSize],
+    queryFn: () =>
+      fetchJobs({
+        title,
+        location,
+        pageSize,
+        page,
+      }),
+    enabled: !!isPaginationReady,
+  });
+
+  useEffect(() => {
+    if (isRouterReady) {
+      setTitle(queryTitle);
+      setLocation(queryLocation);
+    }
+  }, [isRouterReady]);
+
+  useEffect(() => {
+    if (data) {
+      setTotalItems(data.totalItems || 0);
+      setPage(data.currentPage || 1);
+      setPageSize(data.pageSize || 10);
+    }
+  }, [data]);
 
   const onSearch = useCallback((data: { title: string; location: string }) => {
     setTitle(data.title);
     setLocation(data.location);
   }, []);
 
-  useEffect(() => {
-    const fetchJobs = async () => {
-      setLoading(true);
-      setJobs([]);
-      setError(null);
-      try {
-        const strUrlParams = new URLSearchParams({
-          title,
-          location,
-        }).toString();
-        const response = await searchJobsApi(strUrlParams);
-        if (!response.ok) throw new Error("Failed to fetch jobs");
-        const data: Job[] = await response.json();
-        setJobs(data);
-      } catch (error: unknown) {
-        const err = handleError(error);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (title || location) {
-      fetchJobs();
-    }
-  }, [title, location]);
-
-  return { jobs, loading, error, title, location, onSearch };
+  return {
+    jobs: data?.data || [],
+    title,
+    location,
+    loading: isLoading,
+    error: error ? adaptError(error).message : null,
+    onSearch,
+    nextPage,
+    prevPage,
+    canGoNext,
+    canGoPrev,
+    page,
+  };
 }
 
 export default useGetJobsData;

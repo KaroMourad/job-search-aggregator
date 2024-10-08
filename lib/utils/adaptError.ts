@@ -1,9 +1,9 @@
 /**
- * Handle error to ensure returning an Error object
+ * adaptError is a function that adapts an error to an Error object
  * @param {unknown} error - catched error with unknown type
  * @returns {Error} Error - returns an Error object
  */
-export function handleError(error: unknown): Error {
+export default function adaptError(error: unknown): Error {
   if (error instanceof Error) {
     return error;
   }

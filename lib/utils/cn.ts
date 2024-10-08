@@ -6,6 +6,6 @@ import { twMerge } from "tailwind-merge";
  * @param {ClassValue[]} inputs - Tailwind CSS and twin.macro classes
  * @returns {string} string - returns a string of merged classes
  */
-export function cn(...inputs: ClassValue[]) {
+export default function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }

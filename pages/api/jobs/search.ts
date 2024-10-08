@@ -1,9 +1,15 @@
-import { API_URLS, CACHE_SIZE } from "@/lib/constants";
-import { fetchWithTimeout } from "@/lib/utils/fetchWithTimeout";
-import { filterJobs } from "@/lib/utils/filterJobs";
-import { getRootUrl } from "@/lib/utils/getRootUrl";
+import {
+  JOB_API_URLS,
+  CACHE_SIZE,
+  REQUEST_TIMEOUT_DELAY,
+} from "@/lib/constants";
+import {
+  fetchWithTimeout,
+  filterJobs,
+  getRootUrl,
+  paginate,
+} from "@/lib/utils";
 import LRUCache from "@/services/LRUCache";
-import CacheMap from "@/services/LRUCache";
 import { Job } from "@/types/Job";
 import { ApiResponse } from "@/types/api";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -14,46 +20,72 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { title, location } = req.query as {
-    title: string;
-    location: string;
-  };
-  const cacheKey = CacheMap.generateKey({
-    title: title.toLowerCase(),
-    location: location.toLowerCase(),
-  });
-
-  if (cache.has(cacheKey)) {
-    return res.status(200).json(cache.get(cacheKey));
-  }
-
-  const ROOT_URL = getRootUrl(req);
-  const timeout = 2000;
-
   try {
-    const results = await Promise.allSettled(
-      API_URLS.map((url) =>
-        fetchWithTimeout<ApiResponse<Job[]>>(ROOT_URL + url, timeout)
-      )
-    );
+    const { page, pageSize } = parsePaginatedQueryParams(req.query);
+    const { title, location } = parseJobQueryParams(req.query);
 
-    let successfulResults = results
-      .filter((result) => result.status === "fulfilled")
-      .map(
-        (result) =>
-          (result as PromiseFulfilledResult<{ data: Job[] }>).value.data
-      )
-      .flat();
+    const cacheKey = LRUCache.generateKey({ title, location });
 
-    successfulResults = filterJobs(successfulResults, {
-      title: title as string,
-      location: location as string,
-    });
+    if (cache.has(cacheKey)) {
+      const cachedResults = cache.get(cacheKey)!;
+      return res.status(200).json(paginate(cachedResults, page, pageSize));
+    }
 
-    cache.set(cacheKey, successfulResults);
+    // Fetch job listings from APIs
+    const results = await fetchJobListings(req, { title, location });
 
-    res.status(200).json(successfulResults);
+    // Cache the filtered results
+    cache.set(cacheKey, results);
+
+    // Apply pagination to the filtered results
+    const paginatedResults = paginate(results, page, pageSize);
+
+    // Return paginated results
+    res.status(200).json(paginatedResults);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch job listings" });
   }
+}
+
+// Function to parse query parameters
+function parseJobQueryParams(query: NextApiRequest["query"]) {
+  return {
+    title: (query.title as string).toLowerCase() || "",
+    location: (query.location as string).toLowerCase() || "",
+  };
+}
+
+// Function to parse paginated query parameters
+function parsePaginatedQueryParams(query: NextApiRequest["query"]) {
+  return {
+    page: Number(query.page) || 1,
+    pageSize: Number(query.pageSize) || 10,
+  };
+}
+
+// Function to fetch job listings
+async function fetchJobListings(
+  req: NextApiRequest,
+  params: { title: string; location: string }
+) {
+  const { title, location } = params;
+  const ROOT_URL = getRootUrl(req);
+
+  const results = await Promise.allSettled(
+    JOB_API_URLS.map((url) =>
+      fetchWithTimeout<ApiResponse<Job[]>>(
+        ROOT_URL + url,
+        REQUEST_TIMEOUT_DELAY
+      )
+    )
+  );
+
+  const successfulResults = results
+    .filter((result) => result.status === "fulfilled")
+    .flatMap(
+      (result) => (result as PromiseFulfilledResult<{ data: Job[] }>).value.data
+    );
+
+  // Filter results based on title and location
+  return filterJobs(successfulResults, { title, location });
 }

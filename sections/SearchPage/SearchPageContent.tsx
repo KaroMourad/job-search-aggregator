@@ -1,30 +1,37 @@
 import React from "react";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 import useGetJobsData from "./useGetJobsData";
 import { Loading } from "@/components/Loading";
 import { JobsGridContainer } from "../JobsGrid";
 import { JobCard } from "@/components/JobCard";
 import { SearchForm } from "@/components/SearchForm";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-
+import { SearchPagePagination } from ".";
 function SearhPageContent() {
-  const searchParams = useSearchParams();
-  const queryTitle = searchParams.get("title") || "";
-  const queryLocation = searchParams.get("location") || "";
-
-  const { loading, error, jobs, title, location, onSearch } = useGetJobsData(
-    queryTitle,
-    queryLocation
-  );
+  const {
+    jobs,
+    loading,
+    error,
+    onSearch,
+    title,
+    location,
+    nextPage,
+    canGoNext,
+    canGoPrev,
+    prevPage,
+    page,
+  } = useGetJobsData();
 
   return (
     <ErrorBoundary>
-      <h2 className="text-2xl font-semibold mt-10 mb-4 text-center">
-        Job Results for "{title || "All jobs"}" in "
-        {location || "All Locations"}" ({jobs.length})
-      </h2>
+      <h1 className="text-4xl font-semibold text-center mt-10 mb-6">
+        Find your dream job
+      </h1>
       <SearchForm onSearch={onSearch} />
+      <p className="text-xl font-semibold mt-10 text-center">
+        Job Results for "{title || "All jobs"}" in "
+        {location || "All Locations"}"
+      </p>
       {loading && <Loading text="Loading Jobs..." />}
       {error && (
         <div className="flex flex-col items-center flex-1 ">
@@ -56,10 +63,19 @@ function SearhPageContent() {
             <JobCard
               key={job.id}
               job={job}
-              className="min-w-full sm:min-w-64 max-w-80 w-full min-h-full h-64 md:h-60"
+              className="min-w-full sm:min-w-64 w-full min-h-full h-64 md:h-60"
             />
           ))}
         </JobsGridContainer>
+      )}
+      {!error && jobs.length !== 0 && (
+        <SearchPagePagination
+          nextPage={nextPage}
+          canGoNext={canGoNext}
+          canGoPrev={canGoPrev}
+          prevPage={prevPage}
+          page={page}
+        />
       )}
     </ErrorBoundary>
   );

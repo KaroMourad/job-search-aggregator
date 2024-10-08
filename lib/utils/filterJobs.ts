@@ -6,7 +6,7 @@ import { Job } from "@/types/Job";
  * @param filters The filters to apply
  * @returns The filtered list of jobs
  */
-export function filterJobs(
+export default function filterJobs(
   items: Job[],
   filters: Record<string, string>
 ): Job[] {

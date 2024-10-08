@@ -1,3 +1,4 @@
+"use client";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -12,20 +13,13 @@ const SearchForm = ({ onSearch }: SearchFormProps) => {
   const queryTitle = searchParams.get("title") || "";
   const queryLocation = searchParams.get("location") || "";
 
-  const [title, setTitle] = useState(queryTitle || "");
-  const [location, setLocation] = useState(queryLocation || "");
+  const [title, setTitle] = useState(queryTitle);
+  const [location, setLocation] = useState(queryLocation);
 
   useEffect(() => {
-    setTitle(queryTitle || "");
-    setLocation(queryLocation || "");
-    if (typeof onSearch === "function") {
-      onSearch({
-        title: queryTitle,
-        location: queryLocation,
-      });
-      return;
-    }
-  }, [queryTitle, queryLocation, onSearch]);
+    setTitle(queryTitle);
+    setLocation(queryLocation);
+  }, [queryTitle, queryLocation]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,12 +27,21 @@ const SearchForm = ({ onSearch }: SearchFormProps) => {
       title: title.trim(),
       location: location.trim(),
     };
-    if (typeof onSearch === "function") {
-      onSearch(data);
-      return;
+    const params = new URLSearchParams(searchParams);
+    if (data.title) {
+      params.set('title', data.title);
+    } else {
+      params.delete('title');
     }
-    const params = new URLSearchParams(data);
-    router.push(`/search?${params.toString()}`);
+    if (data.location) {
+      params.set('location', data.location);
+    } else {
+      params.delete('location');
+    }
+    params.set("pageSize", "10");
+    params.set("page", "1");
+    router.replace(`/search?${params.toString()}`);
+    if(onSearch) onSearch(data);
   };
 
   return (
@@ -47,7 +50,7 @@ const SearchForm = ({ onSearch }: SearchFormProps) => {
         onSubmit={handleSubmit}
         className="w-full max-w-xs md:max-w-2xl flex flex-col md:flex-row items-center justify-between"
       >
-        <div className="flex flex-col md:flex-row items-center w-full gap-4">
+        <div className="flex flex-col md:flex-row items-center w-full gap-2">
           <div className="w-full">
             <Input
               id="title"

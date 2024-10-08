@@ -9,4 +9,10 @@ export interface Job {
   applicationUrl: string;
 }
 
+export interface FetchJobsParams {
+  title: string;
+  location: string;
+  page?: number | string;
+  pageSize?: number | string;
+}
 
