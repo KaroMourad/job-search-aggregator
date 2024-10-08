@@ -14,7 +14,7 @@ This project is a web application built using Next.js and TypeScript that aggreg
 - Caching mechanism to improve performance.
 - Responsive design for both desktop and mobile devices.
 - Theming feature to switch between light and dark modes.
-- Pagination or infinite scrolling for job listings (Bonus).
+- Pagination for job listings.
 - Filtering options for job listings (Bonus).
 - Feature to save favorite job listings (Bonus).
 
@@ -78,10 +78,10 @@ interface Job {
 - Implemented a timeout mechanism for API calls to enhance user experience.
 - Styled the application using Tailwind CSS for a responsive design.
 - Utilized shadcn/ui components to maintain a consistent look and feel.
+- Implemented pagination for job listings to enhance the user experience for goal-oriented tasks like job searches.
 
 ## Bonus Features
 The following bonus features can be implemented for additional points:
-- Pagination/Infinite Scroll: Implement a pagination system or infinite scrolling for job listings.
 - Filtering: Allow users to filter job listings based on criteria.
 - Favorite Listings: Allow users to save and view their favorite job listings.
 
