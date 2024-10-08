@@ -59,7 +59,7 @@ const SearchForm = ({ onSearch }: SearchFormProps) => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded text-md bg-primary-foreground"
-              placeholder="e.g., Frontend Developer"
+              placeholder="e.g., Full Stack or Backend"
               aria-label="Job Title"
             />
           </div>
@@ -70,7 +70,7 @@ const SearchForm = ({ onSearch }: SearchFormProps) => {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded text-md bg-primary-foreground"
-              placeholder="e.g., New York"
+              placeholder="e.g., Remote or New York"
               aria-label="Job Location"
             />
           </div>
